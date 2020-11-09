@@ -1,32 +1,37 @@
 <div class="bg-image"></div>
-<div>
+<div class="bg-text">
     <form [formGroup]="flightForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="fill">
+        <mat-form-field class="input-field" appearance="outline" color="accent">
             <mat-label>Departure airport</mat-label>
-            <input matInput formControlName="departCode">
+            <input maxlength="3" matInput formControlName="departCode">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="input-field" appearance="outline" color="accent">
             <mat-label>Arrival airport</mat-label>
-            <input matInput formControlName="arrivalCode">
+            <input maxlength="3" matInput formControlName="arrivalCode">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="input-field" appearance="outline" color="accent">
             <mat-label>Departure date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="departDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field class="input-field" appearance="outline" color="accent">
             <mat-label>Arrival date</mat-label>
             <input matInput [matDatepicker]="p" formControlName="arrivalDate">
             <mat-datepicker-toggle matSuffix [for]="p"></mat-datepicker-toggle>
             <mat-datepicker #p></mat-datepicker>
         </mat-form-field>
-        <button mat-stroked-button color="primary" type="submit" [disabled]="!flightForm.valid">Find</button>
+        <button class="submit-button" mat-raised-button color="accent" type="submit" [disabled]="!flightForm.valid">Find</button>
     </form>
 </div>
 
 <div *ngIf="show">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <mat-form-field class="input-field filter-input" color="primary">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input >
+</mat-form-field>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8"
+     matSortDisableClear matSortDirection="desc">
 
         <ng-container matColumnDef="AirlineLogoAddress">
           <th mat-header-cell *matHeaderCellDef>  </th>
@@ -35,35 +40,36 @@
       
         <!-- AirlineName Column -->
         <ng-container matColumnDef="AirlineName">
-          <th mat-header-cell *matHeaderCellDef> Airline Name </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear="true"> Airline Name </th>
           <td mat-cell *matCellDef="let element"> {{element.AirlineName}} </td>
         </ng-container>
       
         <!-- InboundFlightsDuration Column -->
         <ng-container matColumnDef="InboundFlightsDuration">
-          <th mat-header-cell *matHeaderCellDef> Inbound Flights Duration </th>
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Inbound Flights Duration </th>
           <td mat-cell *matCellDef="let element"> {{element.InboundFlightsDuration}} </td>
         </ng-container>
       
         <!-- OutboundFlightsDuration Column -->
         <ng-container matColumnDef="OutboundFlightsDuration">
-          <th mat-header-cell *matHeaderCellDef> Outbound Flights Duration </th>
+          <th mat-header-cell *matHeaderCellDef  mat-sort-header> Outbound Flights Duration </th>
           <td mat-cell *matCellDef="let element"> {{element.OutboundFlightsDuration}} </td>
         </ng-container>
 
         <!-- Stops Column -->
         <ng-container matColumnDef="Stops">
-            <th mat-header-cell *matHeaderCellDef> Stops </th>
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Stops </th>
             <td mat-cell *matCellDef="let element"> {{element.Stops}} </td>
           </ng-container>
 
         <!-- TotalAmount Column -->
         <ng-container matColumnDef="TotalAmount">
-            <th mat-header-cell *matHeaderCellDef> Total Amount </th>
-            <td mat-cell *matCellDef="let element"> {{element.TotalAmount}} </td>
+            <th mat-header-cell *matHeaderCellDef  mat-sort-header> Total Amount </th>
+            <td mat-cell *matCellDef="let element"> {{element.TotalAmount}} US$ </td>
           </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
       </table>
 </div>

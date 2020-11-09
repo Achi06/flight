@@ -11,6 +11,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,10 +27,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatTableModule,
     MatButtonModule,
+    MatSortModule,
     ReactiveFormsModule
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatSortModule
   ],
   bootstrap: [AppComponent]
 })

@@ -6,8 +6,44 @@ table {
     background-image: url("../../assets/background.jpg");
     filter: blur(8px);
     -webkit-filter: blur(8px);
-    height: 60%; 
+    height: 40%; 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .bg-text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
+    color: white;
+    font-weight: bold;
+    border: 3px solid #f1f1f1;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+  }
+form{
+  width: 100%;
+}
+  .input-field{
+    width: 250px;
+    margin-right: 10px;
+  }
+
+  .submit-button{
+    min-width: 70px;
+    max-width: 70px;
+  }
+
+  .filter-input{
+    width: 40%;
+    margin-top: 20px;
   }
